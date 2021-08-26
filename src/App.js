@@ -251,7 +251,11 @@ class UsersList extends Component {
   }
 
   renderDefaultCards = () => {
-    const {isLoading, postsPerPage, usersData, currentPage} = this.state
+    const {isLoading, postsPerPage, usersData, currentPage,searchInputValue,} = this.state
+    const totalPosts =
+      searchInputValue === ''
+        ? usersData.length
+        : this.currentPostsPerPage().length
     return (
       <div className="bg-container">
         <h1 className="main-heading">Admin Interface With Users</h1>
@@ -266,7 +270,7 @@ class UsersList extends Component {
         {this.renderUserDetailsCards()}
         <Pagination
           postsPerPage={postsPerPage}
-          totalPosts={usersData.length}
+          totalPosts={totalPosts}
           updateCurrentPage={this.updateCurrentPageNumber}
           currentPage={currentPage}
         />
