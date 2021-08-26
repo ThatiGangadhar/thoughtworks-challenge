@@ -1,3 +1,4 @@
+# Features of Admin Interface Applications.
 Admin interface with users.
 A search bar is placed to search the specific users.
 Select all button is present below the search bar to select or deselect all users cards in current page and delete button also present to delete the selected user cards.
