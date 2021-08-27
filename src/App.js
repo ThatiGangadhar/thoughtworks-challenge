@@ -1,9 +1,8 @@
-
-import './App.css'
 import {Component} from 'react'
 
 import UserCard from './UserCard'
 import Pagination from './Pagination'
+import './App.css'
 
 class UsersList extends Component {
   state = {
@@ -251,7 +250,18 @@ class UsersList extends Component {
   }
 
   renderDefaultCards = () => {
-    const {isLoading, postsPerPage, usersData, currentPage} = this.state
+    const {
+      isLoading,
+      postsPerPage,
+      usersData,
+      currentPage,
+      searchInputValue,
+    } = this.state
+
+    const totalPosts =
+      searchInputValue === ''
+        ? usersData.length
+        : this.currentPostsPerPage().length
     return (
       <div className="bg-container">
         <h1 className="main-heading">Admin Interface With Users</h1>
@@ -266,7 +276,7 @@ class UsersList extends Component {
         {this.renderUserDetailsCards()}
         <Pagination
           postsPerPage={postsPerPage}
-          totalPosts={usersData.length}
+          totalPosts={totalPosts}
           updateCurrentPage={this.updateCurrentPageNumber}
           currentPage={currentPage}
         />
