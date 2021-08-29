@@ -180,6 +180,7 @@ class UsersList extends Component {
   }
 
   renderDefaultCards = () => {
+<<<<<<< HEAD
     const {
       isLoading,
       postsPerPage,
@@ -188,6 +189,9 @@ class UsersList extends Component {
       searchInputValue,
     } = this.state
 
+=======
+    const {isLoading, postsPerPage, usersData, currentPage,searchInputValue,} = this.state
+>>>>>>> a1eea357454fbdd55a2dcf5b545c38f924783eeb
     const totalPosts =
       searchInputValue === ''
         ? usersData.length
