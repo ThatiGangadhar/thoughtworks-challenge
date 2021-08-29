@@ -48,7 +48,7 @@ const Pagination = props => {
     }
   }
 
-  const moveToFirstPage = () => updateCurrentPage(1)
+  const moveToFirstPage = () => updateCurrentPage(pageNumbers[0])
 
   const moveToLastPage = () => updateCurrentPage(numberOfPages)
 

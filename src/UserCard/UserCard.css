@@ -7,6 +7,7 @@
   margin-bottom: 30px;
   margin-right: 30px;
   width: 250px;
+  padding: 10px;
   flex-grow: 1;
 }
 .description-container {
@@ -26,7 +27,7 @@
 .first-letter {
   background-color: #acf2da;
   color: #030c4d;
-  font-size: 40px;
+  font-size: 27px;
   font-family: 'Roboto';
   font-weight: 500;
   padding-left: 30px;
@@ -41,13 +42,13 @@
 .user-name {
   color: #03106e;
   font-family: 'Roboto';
-  font-size: 20px;
+  font-size: 15px;
   margin-bottom: 0px;
 }
 .user-email {
   color: #212545;
   font-family: 'Roboto';
-  font-size: 20px;
+  font-size: 15px;
   margin-bottom: 0px;
 }
 .card-change-container {
@@ -57,12 +58,44 @@
   width: 100%;
 }
 .icon {
-  font-size: 30px;
+  font-size: 23px;
   margin: 20px;
   cursor: pointer;
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) and (max-width: 992px) {
   .list-item {
-    width: 310px;
+    width: 250px;
+  }
+  .icon {
+    font-size: 26px;
+  }
+  .first-letter {
+    font-size: 30px;
+  }
+  .user-name {
+    font-size: 18px;
+  }
+  .user-email {
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .icon {
+    font-size: 31px;
+  }
+  .first-letter {
+    font-size: 35px;
+  }
+  .user-name {
+    font-size: 22px;
+  }
+  .user-email {
+    font-size: 22px;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 767px) {
+  .list-item {
+    width: 200px;
   }
 }

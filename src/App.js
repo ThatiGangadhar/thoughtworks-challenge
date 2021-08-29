@@ -1,7 +1,8 @@
 import {Component} from 'react'
 
-import UserCard from './UserCard'
-import Pagination from './Pagination'
+import UserCard from './UserCard/UserCard'
+import Pagination from './Pagination/Pagination'
+import EditCard from './EditCard/EditCard'
 import './App.css'
 
 class UsersList extends Component {
@@ -12,11 +13,11 @@ class UsersList extends Component {
     postsPerPage: 10,
     selectedPostsList: [],
     searchInputValue: '',
-    updateName: '',
-    updateEmail: '',
-    updateRole: '',
     showEditCard: false,
     editCardId: '',
+    name: '',
+    role: '',
+    email: '',
   }
 
   getUsersData = async () => {
@@ -65,20 +66,15 @@ class UsersList extends Component {
   }
 
   updateCardDetails = () => {
-    const {
-      usersData,
-      updateEmail,
-      updateName,
-      updateRole,
-      editCardId,
-    } = this.state
+    const {usersData, email, name, role, editCardId} = this.state
+    console.log(name, editCardId)
     const filteredData = usersData.map(eachItem => {
       if (eachItem.id === editCardId) {
         return {
           id: editCardId,
-          name: updateName,
-          role: updateRole,
-          email: updateEmail,
+          name,
+          role,
+          email,
         }
       }
       return eachItem
@@ -114,19 +110,19 @@ class UsersList extends Component {
     this.setState({searchInputValue: event.target.value})
   }
 
-  onChangeUpdateEmail = event => {
-    this.setState({updateEmail: event.target.value})
-    console.log(event.target.value)
+  updateEmail = email => {
+    this.setState({email})
+    console.log(email)
   }
 
-  onChangeUpdateName = event => {
-    this.setState({updateName: event.target.value})
-    console.log(event.target.value)
+  updateName = name => {
+    this.setState({name})
+    console.log(name)
   }
 
-  onChangeUpdateRole = event => {
-    this.setState({updateRole: event.target.value})
-    console.log(event.target.value)
+  updateRole = role => {
+    this.setState({role})
+    console.log(role)
   }
 
   currentPostsPerPage = () => {
@@ -183,72 +179,6 @@ class UsersList extends Component {
     )
   }
 
-  renderEditCardForm = () => {
-    const {updateName, updateRole, updateEmail} = this.state
-
-    return (
-      <div className="edit-container">
-        <div className="edit-details-container">
-          <div className="edit-input-container">
-            <label htmlFor="name" className="edit-label ">
-              NAME
-            </label>
-            <input
-              type="text"
-              id="name"
-              className="edit-input"
-              placeholder="New name"
-              onChange={this.onChangeUpdateName}
-              value={updateName}
-            />
-          </div>
-          <div className="edit-input-container">
-            <label htmlFor="email" className="edit-label ">
-              EMAIL
-            </label>
-            <input
-              type="text"
-              id="email"
-              className="edit-input"
-              placeholder="New email"
-              onChange={this.onChangeUpdateEmail}
-              value={updateEmail}
-            />
-          </div>
-          <div className="edit-input-container">
-            <label htmlFor="role" className="edit-label ">
-              ROLE
-            </label>
-            <input
-              type="text"
-              id="role"
-              className="edit-input"
-              placeholder="New role"
-              onChange={this.onChangeUpdateRole}
-              value={updateRole}
-            />
-          </div>
-          <div className="edit-buttons-container">
-            <button
-              type="button"
-              className="edit-button"
-              onClick={this.closeEditCard}
-            >
-              Cancel
-            </button>
-            <button
-              type="button"
-              className="edit-button"
-              onClick={this.updateCardDetails}
-            >
-              Submit
-            </button>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
   renderDefaultCards = () => {
     const {
       isLoading,
@@ -288,7 +218,17 @@ class UsersList extends Component {
     const {showEditCard} = this.state
     return (
       <>
-        {showEditCard ? this.renderEditCardForm() : this.renderDefaultCards()}
+        {showEditCard ? (
+          <EditCard
+            closeEditCard={this.closeEditCard}
+            updateCardDetails={this.updateCardDetails}
+            updateRole={this.updateRole}
+            updateName={this.updateName}
+            updateEmail={this.updateEmail}
+          />
+        ) : (
+          this.renderDefaultCards()
+        )}
       </>
     )
   }

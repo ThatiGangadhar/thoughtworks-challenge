@@ -1,0 +1,68 @@
+.edit-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #807f7d;
+}
+.edit-details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 10px;
+}
+.edit-input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  flex-shrink: 1;
+}
+.edit-label {
+  color: #46464f;
+  font-family: 'Roboto';
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+.edit-input {
+  height: 30px;
+  width: 300px;
+  border: 1px solid #706c60;
+  border-radius: 5px;
+  color: #898996;
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 18px;
+  padding-left: 20px;
+  outline: none;
+}
+.error-msg {
+  color: red;
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+@media screen and (min-width: 577px) and (max-width: 767px) {
+  .edit-input {
+    width: 250px;
+    font-size: 13px;
+  }
+  .edit-label {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .edit-input {
+    width: 200px;
+    font-size: 13px;
+  }
+  .edit-label {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,27 @@
+.edit-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+.edit-button {
+  color: #ffffff;
+  background-color: #3c3cf0;
+  font-family: 'Roboto';
+  font-size: 15px;
+  font-weight: 500;
+  height: 35px;
+  width: 90px;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .edit-button {
+    font-size: 12px;
+    width: 70px;
+  }
+}
