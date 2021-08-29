@@ -20,6 +20,8 @@ class UsersList extends Component {
     email: '',
   }
 
+  // Getting Users Data By Fetch Method
+
   getUsersData = async () => {
     const url =
       ' https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json'
@@ -34,7 +36,9 @@ class UsersList extends Component {
   componentDidMount = () => {
     this.getUsersData()
   }
+  // The below functions will updates State Variables.
 
+  //this functions calls when you click on the Select Button.
   selectCurrentPagePosts = () => {
     const {selectedPostsList, postsPerPage} = this.state
     const currentPosts = this.currentPostsPerPage()
@@ -45,7 +49,7 @@ class UsersList extends Component {
       this.setState({selectedPostsList: []})
     }
   }
-
+  //this function calls when you click on the individual card and that card will be selected.
   selectSingleCard = id => {
     const {selectedPostsList} = this.state
     let updatedIdList = null
@@ -60,11 +64,12 @@ class UsersList extends Component {
       this.setState({selectedPostsList: updatedIdList})
     }
   }
-
+  //this function calls when you click on the Edit Symbol in each card.
   editCardDetails = id => {
     this.setState({showEditCard: true, editCardId: id})
   }
 
+  //this functions calls when you click on the Submit Button in Edit Card.
   updateCardDetails = () => {
     const {usersData, email, name, role, editCardId} = this.state
     console.log(name, editCardId)
@@ -81,11 +86,12 @@ class UsersList extends Component {
     })
     this.setState({usersData: filteredData, showEditCard: false})
   }
-
+  // this function calls when you click on the Cancel Button in Edit Card.
   closeEditCard = () => {
     this.setState({showEditCard: false})
   }
 
+  //this function calls when you click on the Delete Selected Button in App.js Card.
   deleteSelectedPosts = () => {
     const {usersData, selectedPostsList} = this.state
     this.setState({
@@ -95,21 +101,21 @@ class UsersList extends Component {
       selectedPostsList: [],
     })
   }
-
+  // This function calls when you click on the Delete Icon in UserCard and deletes that card.
   deleteSingleCard = id => {
     const {usersData} = this.state
     this.setState({
       usersData: usersData.filter(eachItem => eachItem.id !== id),
     })
   }
-
+  // this functions calls when you click on the Pagination Numbers and updates Page Number.
   updateCurrentPageNumber = pageNumber =>
     this.setState({currentPage: pageNumber, selectedPostsList: []})
-
+  // this function calls when you Enter name in Input Form Element
   updateSearchInput = event => {
     this.setState({searchInputValue: event.target.value})
   }
-
+  //Below three functions will calls when enter details in Edit Card Inputs and updates the Respective card.
   updateEmail = email => {
     this.setState({email})
   }
@@ -121,7 +127,9 @@ class UsersList extends Component {
   updateRole = role => {
     this.setState({role})
   }
+  // Ends State Updating Functions
 
+  // Starts Rendering Details of Members adn Admins
   currentPostsPerPage = () => {
     const {usersData, currentPage, postsPerPage, searchInputValue} = this.state
     const searchInput = searchInputValue.toLowerCase()
@@ -136,7 +144,7 @@ class UsersList extends Component {
     const currentPosts = filteredData.slice(firstPostOfPage, lastPostOfPage)
     return currentPosts
   }
-
+  //this function renders Select and Delete Selected Buttons.
   renderSelectAndDeleteButtons = () => (
     <div className="select-delete-container">
       <button
@@ -155,27 +163,30 @@ class UsersList extends Component {
       </button>
     </div>
   )
-
+  // this function iterating over currentPosts Array and returns a each User Details card.
   renderUserDetailsCards = () => {
     const {selectedPostsList} = this.state
     const currentPosts = this.currentPostsPerPage()
-
-    return (
-      <ul className="users-list">
-        {currentPosts.map(eachUserDetails => (
-          <UserCard
-            userDetails={eachUserDetails}
-            key={eachUserDetails.id}
-            selectedPostsList={selectedPostsList}
-            deleteSingleCard={this.deleteSingleCard}
-            selectSingleCard={this.selectSingleCard}
-            editCardDetails={this.editCardDetails}
-          />
-        ))}
-      </ul>
-    )
+    if (currentPosts.length === 0) {
+      return <p className="error-input">No Matches Found</p>
+    } else {
+      return (
+        <ul className="users-list">
+          {currentPosts.map(eachUserDetails => (
+            <UserCard
+              userDetails={eachUserDetails}
+              key={eachUserDetails.id}
+              selectedPostsList={selectedPostsList}
+              deleteSingleCard={this.deleteSingleCard}
+              selectSingleCard={this.selectSingleCard}
+              editCardDetails={this.editCardDetails}
+            />
+          ))}
+        </ul>
+      )
+    }
   }
-
+  // this functions renders all User Details Cards and Pagination Buttons.
   renderDefaultCards = () => {
     const {
       isLoading,
