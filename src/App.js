@@ -112,17 +112,14 @@ class UsersList extends Component {
 
   updateEmail = email => {
     this.setState({email})
-    console.log(email)
   }
 
   updateName = name => {
     this.setState({name})
-    console.log(name)
   }
 
   updateRole = role => {
     this.setState({role})
-    console.log(role)
   }
 
   currentPostsPerPage = () => {
@@ -180,7 +177,6 @@ class UsersList extends Component {
   }
 
   renderDefaultCards = () => {
-<<<<<<< HEAD
     const {
       isLoading,
       postsPerPage,
@@ -189,9 +185,6 @@ class UsersList extends Component {
       searchInputValue,
     } = this.state
 
-=======
-    const {isLoading, postsPerPage, usersData, currentPage,searchInputValue,} = this.state
->>>>>>> a1eea357454fbdd55a2dcf5b545c38f924783eeb
     const totalPosts =
       searchInputValue === ''
         ? usersData.length
