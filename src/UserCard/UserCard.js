@@ -18,7 +18,6 @@ const UserCard = props => {
     : ''
 
   const selectCard = () => {
-    console.log('card selected')
     selectSingleCard(userDetails.id)
   }
 
