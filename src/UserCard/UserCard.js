@@ -23,6 +23,7 @@ const UserCard = props => {
   }
 
   const editCard = () => {
+    console.log('card Edited')
     editCardDetails(userDetails.id)
   }
 
