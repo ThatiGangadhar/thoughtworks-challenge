@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
   push:
     paths:
-      - 'src/**'
+      - src/**
 
 jobs:
   Explore-GitHub-Actions:
@@ -27,7 +27,7 @@ jobs:
           for changed_file in ${{ steps.files.outputs.all }}; do
             echo "Do something with this ${changed_file}."
           done
-          
+
       # - uses: dorny/paths-filter@v2
       #   id: changes
       #   with:
